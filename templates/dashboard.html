@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h2>Dashboard</h2>
+  <p><a href="{{ url_for('add_note') }}">Add Note</a> | <a href="{{ url_for('logout') }}">Logout</a></p>
+  <h3>Your Notes</h3>
+  {% if notes %}
+    <ul>
+      {% for note in notes %}
+        <li>{{ note.content }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No notes yet.</p>
+  {% endif %}
+  {% if current_user.role == 'admin' %}
+    <p><a href="{{ url_for('admin') }}">Admin Panel</a></p>
+  {% endif %}
+</body>
+</html>
